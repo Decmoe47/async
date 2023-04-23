@@ -1,6 +1,9 @@
 package async
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 // Exec executes the function in a separate goroutine and returns a future to await
 func Exec(ctx context.Context, fn func()) *Future {
@@ -24,6 +27,7 @@ func Exec(ctx context.Context, fn func()) *Future {
 				case <-done:
 					return
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 			}
@@ -60,6 +64,7 @@ func ExecAll(ctx context.Context, fns []func()) *Future {
 				case <-done:
 					doneCount++
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 				if doneCount == fnsLen {

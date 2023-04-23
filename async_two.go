@@ -1,6 +1,9 @@
 package async
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 type resultTwo[T1, T2 any] struct {
 	value1 T1
@@ -29,6 +32,7 @@ func ExecReturnTwo[T1, T2 any](ctx context.Context, fn func() (T1, T2)) *FutureT
 				case res := <-result:
 					return res.value1, res.value2
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 			}
@@ -72,6 +76,7 @@ func ExecAllReturnTwo[T1, T2 any](ctx context.Context, fns []func() (T1, T2)) *F
 					res2 = append(res2, r.value2)
 					doneCount++
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 				if doneCount == fnsLen {

@@ -1,6 +1,9 @@
 package async
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 // ExecReturnOne executes the function which returns one value in a separate goroutine and returns a future to await
 func ExecReturnOne[T any](ctx context.Context, fn func() T) *FutureOne[T] {
@@ -24,6 +27,7 @@ func ExecReturnOne[T any](ctx context.Context, fn func() T) *FutureOne[T] {
 				case res = <-result:
 					return
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 			}
@@ -66,6 +70,7 @@ func ExecAllReturnOne[T any](ctx context.Context, fns []func() T) *FutureOne[[]T
 					res = append(res, r)
 					doneCount++
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 				if doneCount == fnsLen {

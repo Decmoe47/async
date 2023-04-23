@@ -1,6 +1,9 @@
 package async
 
-import "context"
+import (
+	"context"
+	"time"
+)
 
 type resultFour[T1, T2, T3, T4 any] struct {
 	value1 T1
@@ -31,6 +34,7 @@ func ExecReturnFour[T1, T2, T3, T4 any](ctx context.Context, fn func() (T1, T2, 
 				case res := <-result:
 					return res.value1, res.value2, res.value3, res.value4
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 			}
@@ -79,6 +83,7 @@ func ExecAllReturnFour[T1, T2, T3, T4 any](
 					res4 = append(res4, r.value4)
 					doneCount++
 				default:
+					time.Sleep(time.Millisecond * 10)
 					continue
 				}
 				if doneCount == fnsLen {
