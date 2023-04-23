@@ -76,11 +76,11 @@ func ExecAllReturnTwo[T1, T2 any](ctx context.Context, fns []func() (T1, T2)) *F
 					res2 = append(res2, r.value2)
 					doneCount++
 				default:
+					if doneCount == fnsLen {
+						return
+					}
 					time.Sleep(time.Millisecond)
 					continue
-				}
-				if doneCount == fnsLen {
-					return
 				}
 			}
 		},

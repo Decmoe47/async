@@ -83,11 +83,11 @@ func ExecAllReturnFour[T1, T2, T3, T4 any](
 					res4 = append(res4, r.value4)
 					doneCount++
 				default:
+					if doneCount == fnsLen {
+						return
+					}
 					time.Sleep(time.Millisecond)
 					continue
-				}
-				if doneCount == fnsLen {
-					return
 				}
 			}
 		},

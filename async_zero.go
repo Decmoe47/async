@@ -64,11 +64,11 @@ func ExecAll(ctx context.Context, fns []func()) *Future {
 				case <-done:
 					doneCount++
 				default:
+					if doneCount == fnsLen {
+						return
+					}
 					time.Sleep(time.Millisecond)
 					continue
-				}
-				if doneCount == fnsLen {
-					return
 				}
 			}
 		},

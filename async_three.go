@@ -78,11 +78,11 @@ func ExecAllReturnThree[T1, T2, T3 any](ctx context.Context, fns []func() (T1, T
 					res3 = append(res3, r.value3)
 					doneCount++
 				default:
+					if doneCount == fnsLen {
+						return
+					}
 					time.Sleep(time.Millisecond)
 					continue
-				}
-				if doneCount == fnsLen {
-					return
 				}
 			}
 		},
