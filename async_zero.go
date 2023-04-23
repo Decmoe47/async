@@ -27,7 +27,7 @@ func Exec(ctx context.Context, fn func()) *Future {
 				case <-done:
 					return
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 			}
@@ -64,7 +64,7 @@ func ExecAll(ctx context.Context, fns []func()) *Future {
 				case <-done:
 					doneCount++
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 				if doneCount == fnsLen {

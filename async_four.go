@@ -34,7 +34,7 @@ func ExecReturnFour[T1, T2, T3, T4 any](ctx context.Context, fn func() (T1, T2, 
 				case res := <-result:
 					return res.value1, res.value2, res.value3, res.value4
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 			}
@@ -83,7 +83,7 @@ func ExecAllReturnFour[T1, T2, T3, T4 any](
 					res4 = append(res4, r.value4)
 					doneCount++
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 				if doneCount == fnsLen {

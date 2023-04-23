@@ -27,7 +27,7 @@ func ExecReturnOne[T any](ctx context.Context, fn func() T) *FutureOne[T] {
 				case res = <-result:
 					return
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 			}
@@ -70,7 +70,7 @@ func ExecAllReturnOne[T any](ctx context.Context, fns []func() T) *FutureOne[[]T
 					res = append(res, r)
 					doneCount++
 				default:
-					time.Sleep(time.Millisecond * 10)
+					time.Sleep(time.Millisecond)
 					continue
 				}
 				if doneCount == fnsLen {
