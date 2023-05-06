@@ -2,8 +2,10 @@ package async
 
 import (
 	"fmt"
+	"math/rand"
 	"strconv"
 	"testing"
+	"time"
 )
 
 func TestExecReturnTwo(t *testing.T) {
@@ -20,6 +22,7 @@ func TestExecAllTwo(t *testing.T) {
 		i := i
 		fns = append(fns, func() (int, string) {
 			fmt.Println("executes function ", i)
+			time.Sleep(time.Second * time.Duration(rand.Intn(10)))
 			return i, strconv.Itoa(i + 5)
 		})
 	}

@@ -2,7 +2,9 @@ package async
 
 import (
 	"fmt"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestExecReturnOne(t *testing.T) {
@@ -19,6 +21,7 @@ func TestExecAllOne(t *testing.T) {
 		i := i
 		fns = append(fns, func() int {
 			fmt.Println("executes function ", i)
+			time.Sleep(time.Second * time.Duration(rand.Intn(10)))
 			return i
 		})
 	}

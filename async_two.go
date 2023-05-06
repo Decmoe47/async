@@ -79,8 +79,7 @@ func ExecAllReturnTwo[T1, T2 any](ctx context.Context, fns []func() (T1, T2)) *F
 					if doneCount == fnsLen {
 						return
 					}
-					time.Sleep(time.Millisecond)
-					continue
+					time.Sleep(time.Microsecond * 10)
 				}
 			}
 		},

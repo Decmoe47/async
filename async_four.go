@@ -86,8 +86,7 @@ func ExecAllReturnFour[T1, T2, T3, T4 any](
 					if doneCount == fnsLen {
 						return
 					}
-					time.Sleep(time.Millisecond)
-					continue
+					time.Sleep(time.Microsecond * 10)
 				}
 			}
 		},

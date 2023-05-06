@@ -3,7 +3,9 @@ package async
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 var ctx = context.Background()
@@ -21,6 +23,7 @@ func TestExecAll(t *testing.T) {
 		i := i
 		fns = append(fns, func() {
 			fmt.Println("executes function ", i)
+			time.Sleep(time.Second * time.Duration(rand.Intn(10)))
 		})
 	}
 	ExecAll(ctx, fns).Await(ctx)
