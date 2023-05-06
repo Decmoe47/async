@@ -67,7 +67,7 @@ func ExecAll(ctx context.Context, fns []func()) *Future {
 					if doneCount == fnsLen {
 						return
 					}
-					time.Sleep(time.Millisecond)
+					time.Sleep(Duration)
 					continue
 				}
 			}

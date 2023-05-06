@@ -73,7 +73,7 @@ func ExecAllReturnOne[T any](ctx context.Context, fns []func() T) *FutureOne[[]T
 					if doneCount == fnsLen {
 						return
 					}
-					time.Sleep(time.Microsecond * 10)
+					time.Sleep(Duration)
 				}
 			}
 		},

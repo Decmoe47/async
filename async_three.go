@@ -81,7 +81,7 @@ func ExecAllReturnThree[T1, T2, T3 any](ctx context.Context, fns []func() (T1, T
 					if doneCount == fnsLen {
 						return
 					}
-					time.Sleep(time.Microsecond * 10)
+					time.Sleep(Duration)
 				}
 			}
 		},
